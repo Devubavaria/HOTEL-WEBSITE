@@ -5,7 +5,7 @@ Hotel website using HTML|CSS|JS.This website is build on asymetric design layout
 ## About the project
 This is the single page website build using basic web-technolygies. The website can be accssed on any device bacause it was build concentrating on responsiveness . It provides the user to view diffrent hotel pictures and book a room in any hotel after selecting the desired one.
 
-#Technologies used :
+# Technologies used :
 HTML5
 CSS3
 JAVASCRIPT
