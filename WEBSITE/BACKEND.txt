@@ -1,0 +1,75 @@
+// Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBmYw7b_cLr5IxmODJ0t8Rvxh9_eo8WJOE",
+    authDomain: "mywebsite-18317.firebaseapp.com",
+    projectId: "mywebsite-18317",
+    storageBucket: "mywebsite-18317.appspot.com",
+    messagingSenderId: "234588026433",
+    appId: "1:234588026433:web:f499621be925bacb5c78c0"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+function Validations() {
+		
+    var name = document.getElementById("name").value;
+    // var lname = document.getElementById("lname").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var password = document.getElementById("password").value;
+    // var cpassword = document.getElementById("cpassword").value;
+
+
+        var fn = /^[a-zA-Z\s]+$/;
+        // var ln = /^[a-zA-Z\s]+$/;
+         var em = /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
+        var m = /^[1-9]\d{9}$/;
+        var p =/^[a-zA-Z0-9!@#$%^&*]{8,15}$/;
+        if(fn.test(name) == false) {
+            window.alert("Name should contain only characters.");
+            return false;
+        }
+        // else if(ln.test(lname) == false) {
+        //     window.alert("Last name should contain only characters.");
+        //     return false;
+        // }
+        
+        else if(em.test(email) == false) {
+            window.alert("Please enter a valid email address");
+            return false;
+        }
+        else if(p.test(password) == false) {
+            window.alert("Password should be atleast 8 characters long containing atleast one lowercase,one uppercase, a special charater and one digit.");
+            return false;
+        }
+        else if(m.test(phone) == false) {
+            window.alert("Please enter a valid 10 digit mobile number");
+            return false;
+        }
+       
+        // else if((password == cpassword) == false){
+        //         window.alert("Confirm Password should be equal to password");
+        //         return false;
+        //     }
+        else{
+            const promise = auth.createUserWithEmailAndPassword(email, password);
+            
+            promise.catch(() => {
+                const promise1 = auth.signInWithEmailAndPassword(email, password);
+                promise1.catch(e => alert(e.message));
+                promise1.then(() => {
+                alert("Thanks for your response.");
+                window.location.replace("home.html");
+                    });
+            });
+            promise.then(() => {
+              alert("Thanks for your response.");
+              window.location.replace("home.html");
+          });
+        //   window.alert("Thanks for submitting");
+          return true;
+            }
+            
+     return true;
+
+}

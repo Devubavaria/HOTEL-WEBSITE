@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Registration Form</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+      <!-- font awesome cdn link  -->
+      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/regular.min.js">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <script src="app.js"></script>
+   </head>
+   <body>
+       <div ng-app = "myApp" class = "container" style="width:550px">
+       <div style="text-align:center;">
+          <h2><b><i>Registration Form</i></b></h2>
+          <br><br>
+       </div>
+       <div ng-controller = "RegisterController">
+       <div align="right">
+           <a href="#" ng-click="searchUser()">{{title}}</a>
+       </div>
+       <form role = "form" class="well" ng-hide="ifSearchUser">
+           <div class = "form-group">
+              <label for = "name"> Name : </label>
+              <input type = "text" id = "name" class = "form-control" placeholder = "Enter Name " ng-model = "newuser.name">
+           </div>
+           <br>
+           <div class = "form-group">
+              <label for = "email"> Email : </label>
+              <input type = "email" id = "email" class = "form-control" placeholder = "Enter Email " ng-model = "newuser.email">
+           </div>
+           <br>
+           <div class = "form-group">
+              <label for = "password"> Password : </label>
+              <input type = "password" id = "password" class = "form-control" placeholder = "Enter Password " ng-model = "newuser.password">
+           </div>
+           <br>
+           <div class = "form-group">
+              <label for = "phone"> Phone :  </label>
+              <input type = "text" id = "phone" class = "form-control" placeholder = "Enter Phone " ng-model = "newuser.phone">
+           </div>
+           <br>
+           <input type="hidden" ng-model="newuser.id">
+           <input type="button" class="btn btn-primary" ng-click="saveUser()" class="btn btn-primary" value = "Submit">
+       </form>
+       <br><br>
+       <div><h4><b>Registered Users</b></h4>
+          <table ng-if="users.length" class = "table table-striped table-bordered table-hover">
+          <thead>
+            <tr class = "info">
+               <th>Name &nbsp;</th>
+               <th>Email &nbsp;</th>
+               <th>Phone &nbsp;</th>
+               <th ng-if="!ifSearchUser">Action &nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat = "user in users">
+                 <td>{{ user.name }}</td>
+                 <td>{{ user.email }}</td>
+                 <td>{{ user.phone }}</td>
+                 <td ng-if="!ifSearchUser">
+                    <a href="#" ng-click="edit(user.id)" role = "button" class = "btn btn-info">edit</a> &nbsp;
+                    <a href="#" ng-click="delete(user.id)" role = "button" class = "btn btn-danger">delete</a>
+                 </td>
+              </tr>
+           </tbody>
+           </table>
+         <div ng-hide="users.length > 0">No Users Found</div>
+         </div>
+        </div>
+       </div>
+   </body>
+</html>
